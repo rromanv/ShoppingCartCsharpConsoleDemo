@@ -17,6 +17,14 @@ Menu menu = new();
 
 Cart cart = new();
 
+Warehouse warehouse = new();
+Sales sales = new();
+
+SalesMan John = new();
+
+John.onSale += warehouse.lookOrder;
+John.onSale += sales.processPayment;
+
 while (true)
 {
   Console.Clear();
@@ -46,6 +54,15 @@ while (true)
     case "quit":
       {
         Environment.Exit(0);
+        break;
+      }
+    case "done":
+      {
+        cart.printCart();
+        John.makeSale(cart);
+        Console.Write("\n\nPress any key to continue...");
+        Console.ReadKey();
+        cart.ClearItems();
         break;
       }
     case "show":
